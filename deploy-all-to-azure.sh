@@ -23,3 +23,6 @@ echo "------------ Turn on Application Insights"
 
 echo "------------ Create Traffic Manager"
 ./cretate-traffic-manager.sh
+
+echo "------------ Create Autoscaling"
+./cretate-autoscalings-all.sh
