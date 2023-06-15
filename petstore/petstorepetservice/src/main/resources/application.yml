@@ -12,6 +12,23 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  datasource:
+    url: ${DATASOURCE_DB_URL}
+    username: ${DATASOURCE_DB_USERNAME}
+    password: ${DATASOURCE_DB_PASSWORD}
+    azure:
+      passwordless-enabled: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
 
 management:
   endpoints:
@@ -34,7 +51,7 @@ data:
       name: "Afador"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/afador.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"
@@ -46,7 +63,7 @@ data:
       name: "American Bulldog"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/american-bulldog.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"
@@ -58,7 +75,7 @@ data:
       name: "Australian Retriever"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/australian-retriever.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"
@@ -70,7 +87,7 @@ data:
       name: "Australian Shepherd"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/australian-shepherd.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"          
@@ -82,9 +99,9 @@ data:
       name: "Basset Hound"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/basset-hound.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 6
@@ -94,9 +111,9 @@ data:
       name: "Beagle"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/beagle.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"          
       status: "available"
     - id: 7
@@ -106,9 +123,9 @@ data:
       name: "Border Terrier"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/border-terrier.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 8
@@ -118,9 +135,9 @@ data:
       name: "Boston Terrier"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/boston-terrier.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 9
@@ -130,7 +147,7 @@ data:
       name: "Bulldog"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/bulldog.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"
@@ -142,7 +159,7 @@ data:
       name: "Bullmastiff"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/bullmastiff.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"
@@ -154,9 +171,9 @@ data:
       name: "Chihuahua"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/chihuahua.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 12
@@ -166,9 +183,9 @@ data:
       name: "Cocker Spaniel"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/cocker-spaniel.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 13
@@ -178,7 +195,7 @@ data:
       name: "German Sheperd"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/german-shepherd.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"
@@ -190,7 +207,7 @@ data:
       name: "Labrador Retriever"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/labrador-retriever.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"
@@ -202,9 +219,9 @@ data:
       name: "Pomeranian"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/pomeranian.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 16
@@ -214,9 +231,9 @@ data:
       name: "Pug"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/pug.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 17
@@ -226,7 +243,7 @@ data:
       name: "Rottweiler"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/rottweiler.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"
@@ -238,7 +255,7 @@ data:
       name: "Shetland Sheepdog"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/shetland-sheepdog.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
         - id: 2
           name: "large"
@@ -250,9 +267,9 @@ data:
       name: "Shih Tzu"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/shih-tzu.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 20
@@ -262,140 +279,140 @@ data:
       name: "Toy Fox Terrier"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/dog-breeds/toy-fox-terrier.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 3
           name: "doggie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 21
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "Abyssinian"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/abyssinian.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 22
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "American Bobtail"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/american-bobtail.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 23
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "American Shorthair"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/american-shorthair.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 24
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "Balinese"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/balinese.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 25
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "Birman"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/birman.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 26
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "Bombay"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/bombay.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 27
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "British Shorthair"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/british-shorthair.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 28
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "Burmilla"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/burmilla.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 29
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "Chartreux"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/chartreux.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 30
       category: 
-        id: 1
+        id: 2
         name: "Cat"
       name: "Cornish Rex"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/cat-breeds/cornish-rex.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 4
           name: "kittie"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"
     - id: 31
       category: 
-        id: 1
+        id: 3
         name: "Fish"
       name: "Goldfish"
       photoURL: "https://raw.githubusercontent.com/chtrembl/staticcontent/master/fish-breeds/goldfish.jpg?raw=true"
       tags:
-        - id: 1
+        - id: 5
           name: "fishy"
-        - id: 2
+        - id: 1
           name: "small"
       status: "available"

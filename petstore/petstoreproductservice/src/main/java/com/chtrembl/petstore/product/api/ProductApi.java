@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.chtrembl.petstore.product.model.DataPreload;
 import com.chtrembl.petstore.product.model.ModelApiResponse;
 import com.chtrembl.petstore.product.model.Product;
+import com.chtrembl.petstore.product.repository.ProductRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,12 +47,12 @@ public interface ProductApi {
 
 	// wired in for the scenario the interface declarations need access to scoped
 	// beans, all implementation should occur in Controller tho
-	public DataPreload getBeanToBeAutowired();
+	public ProductRepository getBeanToBeAutowired();
 
 	// wired in for the scenario the interface declarations need access to scoped
 	// beans, all implementation should occur in Controller tho
 	default List<Product> getPreloadedProducts() {
-		return getBeanToBeAutowired().getProducts();
+		return getBeanToBeAutowired().findAll();
 	}
 
 	@ApiOperation(value = "Add a new product to the store", nickname = "addProduct", notes = "", authorizations = {

@@ -39,3 +39,22 @@ export WEB_APP_AUTOSCALE=autoscale-${WEP_APP_SUBDOMAIN}
 export WEB_APP_AUTOSCALE_2=autoscale-${WEP_APP_SUBDOMAIN_2}
 
 export DEPLOYMENT_SLOT=staging
+
+export DB_SERVER_NAME=petstore-db-server
+export DB_NAME=postgres
+export DB_ADMIN_USER=sparvov
+export DB_ADMIN_PASSWORD=Qwerty@12345
+
+export DATASOURCE_DB_HOST=${DB_SERVER_NAME}.postgres.database.azure.com
+export DATASOURCE_DB_PORT=5432
+export DATASOURCE_DB_NAME=${DB_NAME}
+export DATASOURCE_DB_URL=jdbc:postgresql://${DATASOURCE_DB_HOST}:${DATASOURCE_DB_PORT}/${DATASOURCE_DB_NAME}?sslmode=require
+export DATASOURCE_DB_USERNAME=${DB_ADMIN_USER}@${DB_SERVER_NAME}
+export DATASOURCE_DB_PASSWORD=${DB_ADMIN_PASSWORD}
+
+export MY_IP_ADDRESS=$(curl http://whatismyip.akamai.com/)
+
+export KEY_VAULT_NAME=petstore-keyvault-123
+export KEY_VAULT_SECRET_NAME_DB_URL=keyVaultSecretNameDbUrl
+export KEY_VAULT_SECRET_NAME_DB_USERNAME=keyVaultSecretNameDbUserName
+export KEY_VAULT_SECRET_NAME_DB_PASSWORD=keyVaultSecretNameDbPassword

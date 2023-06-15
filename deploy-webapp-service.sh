@@ -7,6 +7,6 @@ az appservice plan create --name ${WEB_APP_SERVICE_PLAN} --resource-group ${RESO
 az webapp create -n ${WEP_APP_SUBDOMAIN} -g ${RESOURCE_GROUP} -p "${WEB_APP_SERVICE_PLAN}" -i "${CONTAINER_REGISTRY}.azurecr.io/${WEB_APP_IMAGE}"
 az webapp deployment container config --enable-cd true -g ${RESOURCE_GROUP} -n ${WEP_APP_SUBDOMAIN}
 az webapp config appsettings set -g ${RESOURCE_GROUP} -n ${WEP_APP_SUBDOMAIN} --settings \
-  "PETSTOREPETSERVICE_URL=https://${PET_SERVICE_SUBDOMAIN}.azurewebsites.net" \
-  "PETSTOREPRODUCTSERVICE_URL=https://${PRODUCT_SERVICE_SUBDOMAIN}.azurewebsites.net" \
-  "PETSTOREORDERSERVICE_URL=https://${ORDER_SERVICE_SUBDOMAIN}.azurewebsites.net"
+    PETSTOREPETSERVICE_URL="https://${PET_SERVICE_SUBDOMAIN}.azurewebsites.net" \
+    PETSTOREPRODUCTSERVICE_URL="https://${PRODUCT_SERVICE_SUBDOMAIN}.azurewebsites.net" \
+    PETSTOREORDERSERVICE_URL="https://${ORDER_SERVICE_SUBDOMAIN}.azurewebsites.net"

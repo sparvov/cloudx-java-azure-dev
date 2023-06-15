@@ -4,8 +4,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.chtrembl.petstore.product.model.ContainerEnvironment;
 import com.chtrembl.petstore.product.model.DataPreload;
@@ -14,7 +16,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan(basePackages = { "io.swagger", "com.chtrembl.petstore.product.api", "io.swagger.configuration" })
+@ComponentScan(basePackages = { "io.swagger", "com.chtrembl.petstore.product.api", "com.chtrembl.petstore.product.service.impl", "io.swagger.configuration" })
+@EnableJpaRepositories("com.chtrembl.petstore.product.repository")
+@EntityScan("com.chtrembl.petstore.product.model")
 public class Swagger2SpringBoot implements CommandLineRunner {
 
 	@Bean

@@ -1,19 +1,29 @@
 package com.chtrembl.petstore.product.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.swagger.annotations.ApiModelProperty;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * Pet
@@ -21,10 +31,16 @@ import io.swagger.annotations.ApiModelProperty;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-12-20T15:31:39.272-05:00")
 
+@Entity
+@Table(name = "products")
 public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("id")
 	private Long id;
 
+	@ManyToOne
+	@JoinColumn(name = "category_id")
 	@JsonProperty("category")
 	private Category category;
 
@@ -35,6 +51,12 @@ public class Product {
 	@Valid
 	private String photoURL;
 
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "product_tag_relations",
+			joinColumns = @JoinColumn(name = "product_id"),
+			inverseJoinColumns = @JoinColumn(name = "tag_id")
+	)
 	@JsonProperty("tags")
 	@Valid
 	private List<Tag> tags = null;

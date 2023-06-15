@@ -29,6 +29,7 @@ import com.chtrembl.petstore.product.model.ContainerEnvironment;
 import com.chtrembl.petstore.product.model.DataPreload;
 import com.chtrembl.petstore.product.model.ModelApiResponse;
 import com.chtrembl.petstore.product.model.Product;
+import com.chtrembl.petstore.product.repository.ProductRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -52,9 +53,13 @@ public class ProductApiController implements ProductApi {
 	@Autowired
 	private DataPreload dataPreload;
 
+	@Autowired
+	private ProductRepository productRepository;
+
+
 	@Override
-	public DataPreload getBeanToBeAutowired() {
-		return dataPreload;
+	public ProductRepository getBeanToBeAutowired() {
+		return productRepository;
 	}
 
 	@org.springframework.beans.factory.annotation.Autowired
