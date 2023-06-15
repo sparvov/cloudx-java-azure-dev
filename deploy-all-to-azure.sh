@@ -26,3 +26,6 @@ echo "------------ Create Traffic Manager"
 
 echo "------------ Create Autoscaling"
 ./cretate-autoscalings-all.sh
+
+echo "------------ Create Deployment Slot"
+./cretate-deployment-slot.sh
