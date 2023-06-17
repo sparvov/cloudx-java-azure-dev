@@ -10,6 +10,8 @@ import javax.validation.Valid;
 import org.springframework.validation.annotation.Validated;
 import org.threeten.bp.OffsetDateTime;
 
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -22,10 +24,12 @@ import io.swagger.annotations.ApiModelProperty;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-12-23T15:16:30.446-05:00")
 
+@Container(containerName = "PestoreContainer", ru = "400")
 public class Order implements Serializable {
 	@JsonProperty("id")
 	private String id = null;
 
+	@PartitionKey
 	@JsonProperty("email")
 	private String email = null;
 

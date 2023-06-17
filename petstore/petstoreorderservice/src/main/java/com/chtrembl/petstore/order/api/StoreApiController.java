@@ -3,6 +3,7 @@ package com.chtrembl.petstore.order.api;
 import com.chtrembl.petstore.order.model.ContainerEnvironment;
 import com.chtrembl.petstore.order.model.Order;
 import com.chtrembl.petstore.order.model.Product;
+import com.chtrembl.petstore.order.repository.OrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
@@ -49,6 +50,9 @@ public class StoreApiController implements StoreApi {
 
 	@Autowired
 	private StoreApiCache storeApiCache;
+
+	@Autowired
+	private OrderRepository orderRepository;
 
 	@Override
 	public StoreApiCache getBeanToBeAutowired() {
@@ -163,6 +167,9 @@ public class StoreApiController implements StoreApi {
 
 			try {
 				Order order = this.storeApiCache.getOrder(body.getId());
+
+				this.orderRepository.save(order);
+
 				String orderJSON = new ObjectMapper().writeValueAsString(order);
 
 				ApiUtil.setResponse(request, "application/json", orderJSON);

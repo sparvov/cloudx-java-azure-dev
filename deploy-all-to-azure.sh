@@ -15,6 +15,9 @@ echo "------------ Create Key Vault"
 echo "------------ Create PostgreSQL DB"
 ./create-postgres-db.sh
 
+echo "------------ Create Cosmos DB"
+./create-cosmos-db.sh
+
 echo "------------ Create & deploy services"
 ./deploy-webapp-service.sh
 ./deploy-webapp-service-2.sh
@@ -22,7 +25,7 @@ echo "------------ Create & deploy services"
 ./deploy-product-service.sh
 ./deploy-order-service.sh
 
-echo "------------ Set Product service permission to Keyvault"
+echo "------------ Set services permission to Keyvault"
 ./set-keyvault-permission-all.sh
 
 echo "------------ Turn on Application Insights"

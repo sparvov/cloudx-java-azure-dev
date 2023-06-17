@@ -29,3 +29,14 @@ management:
   endpoint:
     httptrace:
       enabled: true
+
+cosmos:
+  uri: ${COSMOS_URI}
+  key: ${COSMOS_PRIMARY_KEY}
+  secondaryKey: ${COSMOS_SECONDARY_KEY}
+  queryMetricsEnabled: true
+dynamic:
+  collection:
+    name: spel-property-collection
+
+cosmosDbName: ${COSMOS_DB_NAME}
