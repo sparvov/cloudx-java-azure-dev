@@ -13,3 +13,5 @@ az webapp config appsettings set -g ${RESOURCE_GROUP} -n ${ORDER_SERVICE_SUBDOMA
     COSMOS_PRIMARY_KEY="@Microsoft.KeyVault(VaultName=${KEY_VAULT_NAME};SecretName=${KEY_VAULT_SECRET_NAME_COSMOS_PRIMARY_KEY})" \
     COSMOS_SECONDARY_KEY="@Microsoft.KeyVault(VaultName=${KEY_VAULT_NAME};SecretName=${KEY_VAULT_SECRET_NAME_COSMOS_SECONDARY_KEY})" \
     COSMOS_DB_NAME="@Microsoft.KeyVault(VaultName=${KEY_VAULT_NAME};SecretName=${KEY_VAULT_SECRET_NAME_COSMOS_DB_NAME})"
+
+#az webapp log tail --name ${ORDER_SERVICE_SUBDOMAIN} --resource-group ${RESOURCE_GROUP}

@@ -10,3 +10,5 @@ az webapp config appsettings set -g ${RESOURCE_GROUP} -n ${WEP_APP_SUBDOMAIN} --
     PETSTOREPETSERVICE_URL="https://${PET_SERVICE_SUBDOMAIN}.azurewebsites.net" \
     PETSTOREPRODUCTSERVICE_URL="https://${PRODUCT_SERVICE_SUBDOMAIN}.azurewebsites.net" \
     PETSTOREORDERSERVICE_URL="https://${ORDER_SERVICE_SUBDOMAIN}.azurewebsites.net"
+
+#az webapp log tail --name ${WEP_APP_SUBDOMAIN_EASTUS} --resource-group ${RESOURCE_GROUP}

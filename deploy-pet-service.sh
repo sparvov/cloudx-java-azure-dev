@@ -11,3 +11,5 @@ az webapp config appsettings set -g ${RESOURCE_GROUP} -n ${PET_SERVICE_SUBDOMAIN
     DATASOURCE_DB_URL="@Microsoft.KeyVault(VaultName=${KEY_VAULT_NAME};SecretName=${KEY_VAULT_SECRET_NAME_DB_URL})" \
     DATASOURCE_DB_USERNAME="@Microsoft.KeyVault(VaultName=${KEY_VAULT_NAME};SecretName=${KEY_VAULT_SECRET_NAME_DB_USERNAME})" \
     DATASOURCE_DB_PASSWORD="@Microsoft.KeyVault(VaultName=${KEY_VAULT_NAME};SecretName=${KEY_VAULT_SECRET_NAME_DB_PASSWORD})"
+
+#az webapp log tail --name ${PET_SERVICE_SUBDOMAIN} --resource-group ${RESOURCE_GROUP}

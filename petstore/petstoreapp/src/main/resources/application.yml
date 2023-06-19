@@ -39,3 +39,9 @@ spring:
     cache: false
   cache:
     cache-names: currentUsers
+
+azure:
+  servicebus:
+    namespace: ${namespace}
+    queue: ${orderPlacedQueue}
+    connectionString: ${serviceBusConnectionString}

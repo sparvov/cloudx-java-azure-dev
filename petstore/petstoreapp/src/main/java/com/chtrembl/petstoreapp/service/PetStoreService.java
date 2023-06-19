@@ -15,5 +15,7 @@ public interface PetStoreService {
 
 	void updateOrder(long productId, int quantity, boolean completeOrder);
 
-	Order retrieveOrder(String orderId);
+    void sendOrderToFunctionByServiceBus(String orderJSON);
+
+    Order retrieveOrder(String orderId);
 }

@@ -66,3 +66,10 @@ export KEY_VAULT_SECRET_NAME_COSMOS_DB_NAME=keyVaultSecretNameCosmosDbName
 export COSMOS_DB_ACCOUNT_NAME=petstore-account
 export COSMOS_DB_NAME=Orders
 export COSMOS_URI=https://${COSMOS_DB_ACCOUNT_NAME}.documents.azure.com:443/
+
+export FUNCTION_NAME=orderitemsreserver-$((RANDOM % 1000 + 100))
+export STORAGE_ACCOUNT=8f2586a7e828418e9c45
+export STORAGE_CONTAINER=petstore-container
+
+export NAMESPACE=petstore-service-bus
+export ORDER_PLACED_QUEUE=order-placed-queue

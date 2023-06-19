@@ -9,17 +9,27 @@ echo "------------ Create Resource Group & Container Registry"
 az group create --name ${RESOURCE_GROUP} --location ${LOCATION}
 az acr create --name ${CONTAINER_REGISTRY} --resource-group ${RESOURCE_GROUP} --sku Basic --admin-enabled true
 
-echo "------------ Create Key Vault"
-./create-keyvault.sh
-
 echo "------------ Create PostgreSQL DB"
 ./create-postgres-db.sh
 
 echo "------------ Create Cosmos DB"
 ./create-cosmos-db.sh
 
-echo "------------ Create & deploy services"
+echo "------------ Create Service Bus"
+./create-service-bus.sh
+
+echo "------------ Create Storage account"
+./create-storage-account.sh
+
+echo "------------ Create & deploy OrderItemsReserver Function"
+./create-function.sh
+
+echo "------------ Create Key Vault"
+./create-keyvault.sh
+
+echo "------------ Create & deploy PetStore services"
 ./deploy-webapp-service.sh
+./connect-webapp-service-to-service-bus.sh
 ./deploy-webapp-service-2.sh
 ./deploy-pet-service.sh
 ./deploy-product-service.sh

@@ -4,6 +4,9 @@ package com.chtrembl.petstoreapp.service;
  * Implementation for service calls to the APIM/AKS
  */
 
+import com.azure.messaging.servicebus.ServiceBusClientBuilder;
+import com.azure.messaging.servicebus.ServiceBusMessage;
+import com.azure.messaging.servicebus.ServiceBusSenderClient;
 import com.chtrembl.petstoreapp.model.Category;
 import com.chtrembl.petstoreapp.model.ContainerEnvironment;
 import com.chtrembl.petstoreapp.model.Order;
@@ -13,14 +16,15 @@ import com.chtrembl.petstoreapp.model.Tag;
 import com.chtrembl.petstoreapp.model.User;
 import com.chtrembl.petstoreapp.model.WebRequest;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -37,6 +41,15 @@ import java.util.stream.Collectors;
 @Service
 public class PetStoreServiceImpl implements PetStoreService {
 	private static final Logger logger = LoggerFactory.getLogger(PetStoreServiceImpl.class);
+
+	@Value("${azure.servicebus.namespace}")
+	private String namespace;
+
+	@Value("${azure.servicebus.queue}")
+	private String queue;
+
+	@Value("${azure.servicebus.connectionString}")
+	private String serviceBusConnectionString;
 
 	private final User sessionUser;
 	private final ContainerEnvironment containerEnvironment;
@@ -216,7 +229,7 @@ public class PetStoreServiceImpl implements PetStoreService {
 
 			Consumer<HttpHeaders> consumer = it -> it.addAll(this.webRequest.getHeaders());
 
-			updatedOrder = this.orderServiceWebClient.post().uri("petstoreorderservice/v2/store/order")
+			Order order = this.orderServiceWebClient.post().uri("petstoreorderservice/v2/store/order")
 					.body(BodyInserters.fromPublisher(Mono.just(orderJSON), String.class))
 					.accept(MediaType.APPLICATION_JSON)
 					.headers(consumer)
@@ -225,9 +238,39 @@ public class PetStoreServiceImpl implements PetStoreService {
 					.retrieve()
 					.bodyToMono(Order.class).block();
 
+			sendOrderToFunction(order);
+
 		} catch (Exception e) {
 			logger.warn(e.getMessage());
 		}
+	}
+
+	private void sendOrderToFunction(final Order order) throws JsonProcessingException {
+		String orderJSON = new ObjectMapper().setSerializationInclusion(Include.NON_NULL)
+				.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
+				.configure(SerializationFeature.FAIL_ON_SELF_REFERENCES, false).writeValueAsString(order);
+
+		sendOrderToFunctionByServiceBus(orderJSON);
+	}
+
+	@Override
+	public void sendOrderToFunctionByServiceBus(String orderJSON) {
+		ServiceBusSenderClient senderClient = new ServiceBusClientBuilder()
+				.connectionString(serviceBusConnectionString)
+				.sender()
+				.queueName(queue)
+				.buildClient();
+
+		logger.info("--- Trying to send a single message to the queue: " + queue);
+		logger.info("--- namespace: " + namespace);
+		logger.info("--- serviceBusConnectionString: " + serviceBusConnectionString);
+		logger.info("--- nessage: " + orderJSON);
+
+		senderClient.sendMessage(new ServiceBusMessage(orderJSON));
+
+		logger.info("--- Message successfully sent to the queue: " + queue);
+
+		senderClient.close();
 	}
 
 	@Override
