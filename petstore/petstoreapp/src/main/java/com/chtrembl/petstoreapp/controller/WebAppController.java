@@ -297,7 +297,17 @@ public class WebAppController {
 		pageViewTelemetry.setUrl(new URI(request.getRequestURL().toString()));
 		pageViewTelemetry.setName("landing");
 		this.sessionUser.getTelemetryClient().trackPageView(pageViewTelemetry);
+
+		initializeModel(model, token);
+
 		return "home";
+	}
+
+	private void initializeModel(Model model, OAuth2AuthenticationToken token) {
+		if (token != null) {
+			final OAuth2User user = token.getPrincipal();
+			model.addAllAttributes(user.getAttributes());
+		}
 	}
 
 	@GetMapping(value = "/bingSearch")

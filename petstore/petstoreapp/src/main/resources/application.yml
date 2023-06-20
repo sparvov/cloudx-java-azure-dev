@@ -39,6 +39,19 @@ spring:
     cache: false
   cache:
     cache-names: currentUsers
+  cloud:
+    azure:
+      active-directory:
+        b2c:
+          enabled: true
+          base-uri: ${AUTHORIZATION_SERVER_BASE_URI}
+          credential:
+            client-id: ${AZURE_CLIENT_ID}
+            client-secret: '${AZURE_CLIENT_SECRET}'
+          login-flow: ${LOGIN_USER_FLOW_KEY}
+          logout-success-url: ${LOGOUT_SUCCESS_URL}
+          user-flows:
+            sign-up-or-sign-in: ${SIGN_UP_OR_SIGN_IN_FLOW_NAME}
 
 azure:
   servicebus:

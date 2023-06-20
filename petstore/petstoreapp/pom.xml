@@ -153,6 +153,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.azure.spring</groupId>
+			<artifactId>spring-cloud-azure-starter-active-directory-b2c</artifactId>
+			<version>4.8.0</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

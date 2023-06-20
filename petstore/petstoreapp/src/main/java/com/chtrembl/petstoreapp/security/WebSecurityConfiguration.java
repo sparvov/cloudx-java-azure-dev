@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.azure.spring.cloud.autoconfigure.aadb2c.AadB2cOidcLoginConfigurer;
 import com.chtrembl.petstoreapp.model.ContainerEnvironment;
 
 /**
@@ -23,6 +24,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private ContainerEnvironment containeEnvironment;
 
+	@Autowired
+	private AadB2cOidcLoginConfigurer configurer;
+
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		if (this.aadB2COidcLoginConfigurerWrapper != null
@@ -34,6 +38,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http
+				.authorizeRequests()
+				.anyRequest()
+				.authenticated()
+				.and()
+				.apply(configurer)
+		;
 
 		if (this.aadB2COidcLoginConfigurerWrapper != null
 				&& this.aadB2COidcLoginConfigurerWrapper.getConfigurer() != null) {
