@@ -49,3 +49,5 @@ echo "------------ Create Autoscaling"
 
 echo "------------ Create Deployment Slot"
 ./cretate-deployment-slot.sh
+
+az resource list --resource-group ${RESOURCE_GROUP} --output table
