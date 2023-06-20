@@ -1,8 +1,4 @@
-# Cloudx Java Azure Dev
+Run ```deploy-all-to-azure.sh``` to create and deploy the final PetStore configuration on Azure. 
+This file contains all required steps of commands, except creating Logic App and B2C, that should be created and configured manually.
 
-Azure Cloud Introductory course for Java Developers. \
-Based on the similar course for .Net Devs: [CloudX Associate: MS Azure Developer](https://learn.epam.com/detailsPage?id=03203120-312d-4253-917b-57017b5693d5&source=PROGRAM)
-
-## Repository Structure
-1. `./petstore` - home dir for PetStore code-base
-
+Update ```login-to-azure.sh``` if required.

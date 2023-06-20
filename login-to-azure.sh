@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#az login
+az login
 
 target_subscription_name="Visual Studio Professional Subscription"
 
